@@ -1,0 +1,40 @@
+{
+    "data": {
+        "persons": [
+            {
+                "device_trackers": [
+                    "device_tracker.andrew_s_lex626",
+                    "device_tracker.lex626",
+                    "device_tracker.iss_home",
+                    "device_tracker.android_c7ded4a8f83969a9_home",
+                    "device_tracker.borg4_home",
+                    "device_tracker.00_ef_ba_13_d5_7f",
+                    "device_tracker.0c_7a_15_95_b9_d8",
+                    "device_tracker.muppet_home"
+                ],
+                "id": "fddfb278d5d9468f8a58fe3309b8f99c",
+                "name": "Andrew",
+                "user_id": "34df6446741c45deaad2c4838a1881b9"
+            },
+            {
+                "device_trackers": [
+                    "device_tracker.redmi7_redmi_home",
+                    "device_tracker.asus_home",
+                    "device_tracker.android_fcee2aee9af45d6b_home",
+                    "device_tracker.huawei_y7_2019_73cbfbdb69_home"
+                ],
+                "id": "5da53be7b8ee466fa01195c71fda4e82",
+                "name": "Yanara",
+                "user_id": "c0db6f16147d4c24998336119c183eb0"
+            },
+            {
+                "device_trackers": [],
+                "id": "abd2bf37586c4b3eb04d988ecd97830f",
+                "name": "Salva",
+                "user_id": null
+            }
+        ]
+    },
+    "key": "person",
+    "version": 1
+}

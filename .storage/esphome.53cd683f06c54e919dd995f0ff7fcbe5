@@ -1,0 +1,115 @@
+{
+    "version": 1,
+    "key": "esphome.53cd683f06c54e919dd995f0ff7fcbe5",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "door",
+            "mac_address": "3C:71:BF:5A:92:28",
+            "compilation_time": "May  1 2020, 12:47:19",
+            "model": "WEMOS LOLIN32",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.0-dev"
+        },
+        "services": [
+            {
+                "name": "alarm",
+                "key": 855317084,
+                "args": []
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "door",
+                "key": 1877847629,
+                "name": "Door",
+                "unique_id": "doorbinary_sensordoor",
+                "device_class": "door",
+                "is_status_binary_sensor": false
+            }
+        ],
+        "sensor": [
+            {
+                "object_id": "key_lock_turns",
+                "key": 3496020429,
+                "name": "Key lock turns",
+                "unique_id": "doorsensorkey_lock_turns",
+                "icon": "mdi:key-variant",
+                "unit_of_measurement": "",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "door_angle",
+                "key": 1744663865,
+                "name": "Door angle",
+                "unique_id": "doorsensordoor_angle",
+                "icon": "mdi:angle-acute",
+                "unit_of_measurement": "\u00ba",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "door_node_signal",
+                "key": 2955085295,
+                "name": "Door node signal",
+                "unique_id": "3c71bf5a9228-wifisignal",
+                "icon": "mdi:wifi",
+                "unit_of_measurement": "dB",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "door_node_uptime",
+                "key": 1068569383,
+                "name": "Door node uptime",
+                "unique_id": "3c71bf5a9228-uptime",
+                "icon": "mdi:timer",
+                "unit_of_measurement": "s",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "door_lock_temperature",
+                "key": 3870587598,
+                "name": "Door lock temperature",
+                "unique_id": "doorsensordoor_lock_temperature",
+                "icon": "mdi:thermometer",
+                "unit_of_measurement": "\u00b0C",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "door_lock_qfe",
+                "key": 3516680778,
+                "name": "Door lock QFE",
+                "unique_id": "doorsensordoor_lock_qfe",
+                "icon": "mdi:gauge",
+                "unit_of_measurement": "hPa",
+                "accuracy_decimals": 1,
+                "force_update": false
+            }
+        ],
+        "text_sensor": [
+            {
+                "object_id": "door_node_version",
+                "key": 2117713129,
+                "name": "Door node version",
+                "unique_id": "3c71bf5a9228-version",
+                "icon": "mdi:new-box"
+            }
+        ],
+        "cover": [
+            {
+                "object_id": "door_latch",
+                "key": 1806947030,
+                "name": "Door latch",
+                "unique_id": "doorcoverdoor_latch",
+                "assumed_state": true,
+                "supports_position": true,
+                "supports_tilt": false,
+                "device_class": "door"
+            }
+        ]
+    }
+}

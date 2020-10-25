@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "key": "lovelace_resources",
+    "data": {
+        "items": [
+            {
+                "type": "module",
+                "url": "/local/floorplan/floorplan-card.js?v=1.1.14",
+                "id": "a3323e2fa0de4bffb5cb317ae4d72ab9"
+            },
+            {
+                "type": "module",
+                "url": "/local/custom_ui/swipe-card/swipe-card.js?v=3.0.0",
+                "id": "be5d1cde4a9e4d75a67bfe2f28fab7fa"
+            }
+        ]
+    }
+}

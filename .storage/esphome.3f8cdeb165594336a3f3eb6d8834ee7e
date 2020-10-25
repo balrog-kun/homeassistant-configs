@@ -1,0 +1,372 @@
+{
+    "version": 1,
+    "key": "esphome.3f8cdeb165594336a3f3eb6d8834ee7e",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "livingroom",
+            "mac_address": "3C:71:BF:5A:8C:E0",
+            "compilation_time": "Mar  3 2020, 10:56:04",
+            "model": "WEMOS LOLIN32",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.0-dev"
+        },
+        "services": [
+            {
+                "name": "alarm",
+                "key": 855317084,
+                "args": []
+            }
+        ],
+        "sensor": [
+            {
+                "object_id": "living_room_qnh",
+                "key": 1396343154,
+                "name": "Living room QNH",
+                "unique_id": "livingroomsensorliving_room_qnh",
+                "icon": "mdi:gauge",
+                "unit_of_measurement": "hPa",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_coethanolh2nh3ch4",
+                "key": 2494950812,
+                "name": "Living room CO+Ethanol+H2+NH3+CH4",
+                "unique_id": "livingroomsensorliving_room_coethanolh2nh3ch4",
+                "icon": "mdi:fire",
+                "unit_of_measurement": "ppm",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_socket_1_current",
+                "key": 3463056858,
+                "name": "Living room socket 1 current",
+                "unique_id": "livingroomsensorliving_room_socket_1_current",
+                "icon": "mdi:flash",
+                "unit_of_measurement": "A",
+                "accuracy_decimals": 2,
+                "force_update": false
+            },
+            {
+                "object_id": "bedroom_1_sockets_current",
+                "key": 560499738,
+                "name": "Bedroom 1 sockets current",
+                "unique_id": "livingroomsensorbedroom_1_sockets_current",
+                "icon": "mdi:flash",
+                "unit_of_measurement": "A",
+                "accuracy_decimals": 2,
+                "force_update": false
+            },
+            {
+                "object_id": "bedroom_2_current",
+                "key": 2765483426,
+                "name": "Bedroom 2 current",
+                "unique_id": "livingroomsensorbedroom_2_current",
+                "icon": "mdi:flash",
+                "unit_of_measurement": "A",
+                "accuracy_decimals": 2,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_socket_2_current",
+                "key": 3448817493,
+                "name": "Living room socket 2 current",
+                "unique_id": "livingroomsensorliving_room_socket_2_current",
+                "icon": "mdi:flash",
+                "unit_of_measurement": "A",
+                "accuracy_decimals": 2,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_brightness",
+                "key": 3403223410,
+                "name": "Living room brightness",
+                "unique_id": "livingroomsensorliving_room_brightness",
+                "icon": "mdi:car-light-high",
+                "unit_of_measurement": "%",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_node_signal",
+                "key": 1963989030,
+                "name": "Living room node signal",
+                "unique_id": "3c71bf5a8ce0-wifisignal",
+                "icon": "mdi:wifi",
+                "unit_of_measurement": "dB",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_node_uptime",
+                "key": 2964113850,
+                "name": "Living room node uptime",
+                "unique_id": "3c71bf5a8ce0-uptime",
+                "icon": "mdi:timer",
+                "unit_of_measurement": "s",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_node_magnetic_magnitude",
+                "key": 2701185435,
+                "name": "Living room node magnetic magnitude",
+                "unique_id": "3c71bf5a8ce0-hall",
+                "icon": "mdi:magnet",
+                "unit_of_measurement": "\u00b5T",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "ads1115_channel_a0-gnd",
+                "key": 614731425,
+                "name": "ADS1115 Channel A0-GND",
+                "unique_id": "livingroomsensorads1115_channel_a0-gnd",
+                "icon": "mdi:flash",
+                "unit_of_measurement": "V",
+                "accuracy_decimals": 3,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_ambient_temperature",
+                "key": 3235283342,
+                "name": "Living room ambient temperature",
+                "unique_id": "livingroomsensorliving_room_ambient_temperature",
+                "icon": "mdi:thermometer",
+                "unit_of_measurement": "\u00b0C",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_ambient_eco2",
+                "key": 1263224835,
+                "name": "Living room ambient eCO2",
+                "unique_id": "livingroomsensorliving_room_ambient_eco2",
+                "icon": "mdi:periodic-table-co2",
+                "unit_of_measurement": "ppm",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_qfe",
+                "key": 1262122215,
+                "name": "Living room QFE",
+                "unique_id": "livingroomsensorliving_room_qfe",
+                "icon": "mdi:gauge",
+                "unit_of_measurement": "hPa",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_total_volatile_organic_compound",
+                "key": 3368209184,
+                "name": "Living room total Volatile Organic Compound",
+                "unique_id": "livingroomsensorliving_room_total_volatile_organic_compound",
+                "icon": "mdi:radiator",
+                "unit_of_measurement": "ppb",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "living_room_relative_humidity",
+                "key": 1112570605,
+                "name": "Living room relative humidity",
+                "unique_id": "livingroomsensorliving_room_relative_humidity",
+                "icon": "mdi:water-percent",
+                "unit_of_measurement": "%",
+                "accuracy_decimals": 1,
+                "force_update": false
+            }
+        ],
+        "text_sensor": [
+            {
+                "object_id": "living_room_node_version",
+                "key": 1357440186,
+                "name": "Living room node version",
+                "unique_id": "3c71bf5a8ce0-version",
+                "icon": "mdi:new-box"
+            },
+            {
+                "object_id": "living_room_alarm_reason",
+                "key": 1383644925,
+                "name": "Living room alarm reason",
+                "unique_id": "livingroomtext_sensorliving_room_alarm_reason",
+                "icon": ""
+            }
+        ],
+        "light": [
+            {
+                "object_id": "living_room_lights_1",
+                "key": 2600440452,
+                "name": "Living room lights 1",
+                "unique_id": "livingroomlightliving_room_lights_1",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "living_room_lights_2",
+                "key": 2600440455,
+                "name": "Living room lights 2",
+                "unique_id": "livingroomlightliving_room_lights_2",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "living_room_lights_3",
+                "key": 2600440454,
+                "name": "Living room lights 3",
+                "unique_id": "livingroomlightliving_room_lights_3",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "living_room_lights_4",
+                "key": 2600440449,
+                "name": "Living room lights 4",
+                "unique_id": "livingroomlightliving_room_lights_4",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "living_room_lights_5",
+                "key": 2600440448,
+                "name": "Living room lights 5",
+                "unique_id": "livingroomlightliving_room_lights_5",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "bedroom_1_light",
+                "key": 2112113574,
+                "name": "Bedroom 1 light",
+                "unique_id": "livingroomlightbedroom_1_light",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            }
+        ],
+        "switch": [
+            {
+                "object_id": "bedroom_2_power",
+                "key": 1571984398,
+                "name": "Bedroom 2 power",
+                "unique_id": "livingroomswitchbedroom_2_power",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "living_room_socket_1",
+                "key": 143213148,
+                "name": "Living room socket 1",
+                "unique_id": "livingroomswitchliving_room_socket_1",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "living_room_socket_2",
+                "key": 143213151,
+                "name": "Living room socket 2",
+                "unique_id": "livingroomswitchliving_room_socket_2",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "bedroom_1_sockets",
+                "key": 825651356,
+                "name": "Bedroom 1 sockets",
+                "unique_id": "livingroomswitchbedroom_1_sockets",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "living_room_12v",
+                "key": 4137426928,
+                "name": "Living room 12V",
+                "unique_id": "livingroomswitchliving_room_12v",
+                "icon": "",
+                "assumed_state": false
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "living_room_switch_a",
+                "key": 2488713943,
+                "name": "Living room switch A",
+                "unique_id": "livingroombinary_sensorliving_room_switch_a",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "living_room_switch_b",
+                "key": 2488713940,
+                "name": "Living room switch B",
+                "unique_id": "livingroombinary_sensorliving_room_switch_b",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "living_room_switch_c",
+                "key": 2488713941,
+                "name": "Living room switch C",
+                "unique_id": "livingroombinary_sensorliving_room_switch_c",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "living_room_switch_d",
+                "key": 2488713938,
+                "name": "Living room switch D",
+                "unique_id": "livingroombinary_sensorliving_room_switch_d",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "bedroom_1_switch_a",
+                "key": 3548810250,
+                "name": "Bedroom 1 switch A",
+                "unique_id": "livingroombinary_sensorbedroom_1_switch_a",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "living_room_motion",
+                "key": 693705465,
+                "name": "Living room motion",
+                "unique_id": "livingroombinary_sensorliving_room_motion",
+                "device_class": "motion",
+                "is_status_binary_sensor": false
+            }
+        ]
+    }
+}

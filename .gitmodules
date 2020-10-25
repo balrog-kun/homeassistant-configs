@@ -1,0 +1,3 @@
+[submodule "custom_components/ping_arp"]
+	path = custom_components/ping_arp
+	url = https://github.com/balrog-kun/ha_ping_arp.git

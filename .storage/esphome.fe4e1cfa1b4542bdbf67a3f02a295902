@@ -1,0 +1,225 @@
+{
+    "version": 1,
+    "key": "esphome.fe4e1cfa1b4542bdbf67a3f02a295902",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "hall",
+            "mac_address": "3C:71:BF:5A:97:90",
+            "compilation_time": "Sep 19 2020, 11:36:09",
+            "model": "WEMOS LOLIN32",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.0-dev"
+        },
+        "services": [
+            {
+                "name": "alarm",
+                "key": 855317084,
+                "args": []
+            }
+        ],
+        "light": [
+            {
+                "object_id": "hall_light",
+                "key": 732060889,
+                "name": "Hall light",
+                "unique_id": "halllighthall_light",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "bathroom_lights_1",
+                "key": 2754297845,
+                "name": "Bathroom lights 1",
+                "unique_id": "halllightbathroom_lights_1",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "bathroom_lights_2",
+                "key": 2754297846,
+                "name": "Bathroom lights 2",
+                "unique_id": "halllightbathroom_lights_2",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            },
+            {
+                "object_id": "bathroom_mirror_lights",
+                "key": 1439237229,
+                "name": "Bathroom mirror lights",
+                "unique_id": "halllightbathroom_mirror_lights",
+                "supports_brightness": true,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            }
+        ],
+        "switch": [
+            {
+                "object_id": "kitchen_area_power",
+                "key": 596712603,
+                "name": "Kitchen area power",
+                "unique_id": "hallswitchkitchen_area_power",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "main_area_power",
+                "key": 835736316,
+                "name": "Main area power",
+                "unique_id": "hallswitchmain_area_power",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "bathroom_socket_power",
+                "key": 4079974355,
+                "name": "Bathroom socket power",
+                "unique_id": "hallswitchbathroom_socket_power",
+                "icon": "",
+                "assumed_state": false
+            },
+            {
+                "object_id": "bathroom_extractor",
+                "key": 2653701942,
+                "name": "Bathroom extractor",
+                "unique_id": "hallswitchbathroom_extractor",
+                "icon": "mdi:air-conditioner",
+                "assumed_state": false
+            },
+            {
+                "object_id": "doorbell",
+                "key": 647453594,
+                "name": "Doorbell",
+                "unique_id": "hallswitchdoorbell",
+                "icon": "mdi:bell",
+                "assumed_state": false
+            },
+            {
+                "object_id": "doorbell_silenced",
+                "key": 3610013150,
+                "name": "Doorbell silenced",
+                "unique_id": "hallswitchdoorbell_silenced",
+                "icon": "mdi:volume-off",
+                "assumed_state": false
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "hall_switch",
+                "key": 3495162799,
+                "name": "Hall switch",
+                "unique_id": "hallbinary_sensorhall_switch",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "bathroom_entrance_switch_1",
+                "key": 2350489991,
+                "name": "Bathroom entrance switch 1",
+                "unique_id": "hallbinary_sensorbathroom_entrance_switch_1",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "bathroom_entrance_switch_2",
+                "key": 2350489988,
+                "name": "Bathroom entrance switch 2",
+                "unique_id": "hallbinary_sensorbathroom_entrance_switch_2",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "bathroom_mirrorside_switch",
+                "key": 885372021,
+                "name": "Bathroom mirrorside switch",
+                "unique_id": "hallbinary_sensorbathroom_mirrorside_switch",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "bathroom_door",
+                "key": 1431659638,
+                "name": "Bathroom door",
+                "unique_id": "hallbinary_sensorbathroom_door",
+                "device_class": "door",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "doorbell_switch",
+                "key": 2434230945,
+                "name": "Doorbell switch",
+                "unique_id": "hallbinary_sensordoorbell_switch",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "hall-kitchen_motion",
+                "key": 3248437300,
+                "name": "Hall-kitchen motion",
+                "unique_id": "hallbinary_sensorhall-kitchen_motion",
+                "device_class": "motion",
+                "is_status_binary_sensor": false
+            }
+        ],
+        "sensor": [
+            {
+                "object_id": "hall_brightness",
+                "key": 2156766530,
+                "name": "Hall brightness",
+                "unique_id": "hallsensorhall_brightness",
+                "icon": "mdi:car-light-high",
+                "unit_of_measurement": "%",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "hall_node_signal",
+                "key": 2751651670,
+                "name": "Hall node signal",
+                "unique_id": "3c71bf5a9790-wifisignal",
+                "icon": "mdi:wifi",
+                "unit_of_measurement": "dB",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "hall_node_uptime",
+                "key": 4249016362,
+                "name": "Hall node uptime",
+                "unique_id": "3c71bf5a9790-uptime",
+                "icon": "mdi:timer",
+                "unit_of_measurement": "s",
+                "accuracy_decimals": 0,
+                "force_update": false
+            }
+        ],
+        "text_sensor": [
+            {
+                "object_id": "hall_node_version",
+                "key": 3189186890,
+                "name": "Hall node version",
+                "unique_id": "3c71bf5a9790-version",
+                "icon": "mdi:new-box"
+            }
+        ]
+    }
+}

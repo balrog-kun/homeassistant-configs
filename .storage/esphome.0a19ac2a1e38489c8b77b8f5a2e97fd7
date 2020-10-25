@@ -1,0 +1,78 @@
+{
+    "version": 1,
+    "key": "esphome.0a19ac2a1e38489c8b77b8f5a2e97fd7",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "bedroom2light",
+            "mac_address": "5C:CF:7F:72:2E:12",
+            "compilation_time": "Jan 26 2020, 05:52:28",
+            "model": "PLATFORMIO_ESP01_1M",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.0-dev"
+        },
+        "services": [
+            {
+                "name": "alarm",
+                "key": 855317084,
+                "args": []
+            }
+        ],
+        "sensor": [
+            {
+                "object_id": "bedroom_2_node_signal",
+                "key": 3295615278,
+                "name": "Bedroom 2 node signal",
+                "unique_id": "5ccf7f722e12-wifisignal",
+                "icon": "mdi:wifi",
+                "unit_of_measurement": "dB",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "bedroom_2_node_uptime",
+                "key": 595347154,
+                "name": "Bedroom 2 node uptime",
+                "unique_id": "5ccf7f722e12-uptime",
+                "icon": "mdi:timer",
+                "unit_of_measurement": "s",
+                "accuracy_decimals": 0,
+                "force_update": false
+            }
+        ],
+        "text_sensor": [
+            {
+                "object_id": "bedroom_2_node_version",
+                "key": 2836527762,
+                "name": "Bedroom 2 node version",
+                "unique_id": "5ccf7f722e12-version",
+                "icon": "mdi:new-box"
+            }
+        ],
+        "light": [
+            {
+                "object_id": "bedroom_2_light",
+                "key": 140858369,
+                "name": "Bedroom 2 light",
+                "unique_id": "bedroom2lightlightbedroom_2_light",
+                "supports_brightness": false,
+                "supports_rgb": false,
+                "supports_white_value": false,
+                "supports_color_temperature": false,
+                "min_mireds": 0.0,
+                "max_mireds": 0.0,
+                "effects": []
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "bedroom_2_switch",
+                "key": 2261810679,
+                "name": "Bedroom 2 switch",
+                "unique_id": "bedroom2lightbinary_sensorbedroom_2_switch",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            }
+        ]
+    }
+}

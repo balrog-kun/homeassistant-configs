@@ -1,0 +1,110 @@
+{
+    "version": 1,
+    "key": "esphome.de9d7e4a20474ff69b5286759c998516",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "intercom",
+            "mac_address": "24:62:AB:CA:DC:18",
+            "compilation_time": "Oct 25 2020, 00:55:21",
+            "model": "TTGO T7 V1.3 Mini32",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.0-dev"
+        },
+        "services": [
+            {
+                "name": "alarm",
+                "key": 855317084,
+                "args": []
+            },
+            {
+                "name": "error_beep",
+                "key": 2534052532,
+                "args": []
+            }
+        ],
+        "switch": [
+            {
+                "object_id": "door_unlock_signal",
+                "key": 1719395519,
+                "name": "Door unlock signal",
+                "unique_id": "intercomswitchdoor_unlock_signal",
+                "icon": "mdi:door-open",
+                "assumed_state": false
+            },
+            {
+                "object_id": "intercom_silenced",
+                "key": 3023923708,
+                "name": "Intercom silenced",
+                "unique_id": "intercomswitchintercom_silenced",
+                "icon": "mdi:volume-off",
+                "assumed_state": false
+            },
+            {
+                "object_id": "intercom_disconnected",
+                "key": 7394042,
+                "name": "Intercom disconnected",
+                "unique_id": "intercomswitchintercom_disconnected",
+                "icon": "mdi:connection",
+                "assumed_state": false
+            },
+            {
+                "object_id": "hall_socket",
+                "key": 3964332400,
+                "name": "Hall socket",
+                "unique_id": "intercomswitchhall_socket",
+                "icon": "",
+                "assumed_state": false
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "call_active",
+                "key": 1595528382,
+                "name": "Call active",
+                "unique_id": "intercombinary_sensorcall_active",
+                "device_class": "vibration",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "phone_unhooked",
+                "key": 442685401,
+                "name": "Phone unhooked",
+                "unique_id": "intercombinary_sensorphone_unhooked",
+                "device_class": "presence",
+                "is_status_binary_sensor": false
+            }
+        ],
+        "sensor": [
+            {
+                "object_id": "intercom_node_signal",
+                "key": 82370622,
+                "name": "Intercom node signal",
+                "unique_id": "2462abcadc18-wifisignal",
+                "icon": "mdi:wifi",
+                "unit_of_measurement": "dB",
+                "accuracy_decimals": 0,
+                "force_update": false
+            },
+            {
+                "object_id": "intercom_node_uptime",
+                "key": 3200591266,
+                "name": "Intercom node uptime",
+                "unique_id": "2462abcadc18-uptime",
+                "icon": "mdi:timer",
+                "unit_of_measurement": "s",
+                "accuracy_decimals": 0,
+                "force_update": false
+            }
+        ],
+        "text_sensor": [
+            {
+                "object_id": "intercom_node_version",
+                "key": 1612521602,
+                "name": "Intercom node version",
+                "unique_id": "2462abcadc18-version",
+                "icon": "mdi:new-box"
+            }
+        ]
+    }
+}

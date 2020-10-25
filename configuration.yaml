@@ -1,0 +1,224 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+http:
+  base_url: https://ha.zabor.org/
+  server_host: 127.0.0.1
+  server_port: 444
+  #ssl_certificate: /etc/letsencrypt/live/ha.zabor.org/fullchain.pem
+  #ssl_key: /etc/letsencrypt/live/ha.zabor.org/privkey.pem
+  ip_ban_enabled: true
+  login_attempts_threshold: 4
+  use_x_forwarded_for: true
+  trusted_proxies: 127.0.0.1
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.device_tracker: error
+    custom_components.ping_arp.device_tracker: error
+    # When an automation starts there are 'info' messages of both classes..
+    homeassistant.helpers.script: error
+    homeassistant.components.automation: error
+    # This doesn't work:
+    homeassistant.components.automation.var_update_1: error
+    #homeassistant.components.alexa: debug
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+notify:
+  - name: alarm_email
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 25
+    sender: balrogg@gmail.com
+    encryption: starttls
+    username: balrogg@gmail.com
+    password: !secret gmail_smtp_api_passwd
+    recipient:
+      - balrogg@gmail.com
+    sender_name: San Isidro Home-Assistant
+  - name: browser_push
+    platform: html5
+
+# TODO: alarm logic using https://www.home-assistant.io/integrations/manual/ but with internal logic in the nodes too?
+
+device_tracker:
+  # fpings the whole IP range from "hosts:" every "fping_interval" seconds, ignores the result
+  # then, every interval_seconds, runs arp -a to see which IPs have a mac assigned + optionally name
+  # pings each new or existing device in turn.... existing devices are not pinged until home_interval expires though, new ones are always
+  # if device was present but doesn't respond to pings, tries an ARP ping using nping up to 5 times
+  #
+  # consider_home is documented at https://www.home-assistant.io/integrations/device_tracker/ and should *always* be longer than
+  # interval_seconds? otherwise all devices go away every interval_seconds and then come back????
+  # also has no real effect if shorter than home_interval * 2 minutes...
+  - platform: ping_arp
+    ping_timeout: 3
+    interval_seconds: 100
+    # Minutes
+    home_interval: 4
+    # Seconds
+    consider_home: 150
+    # Seconds
+    fping_interval: 900
+    try_arping: True
+    hosts: 10.0.6.0/24
+    exclude: 10.0.6.1
+
+input_boolean:
+  no_recent_motion:
+    initial: false
+  motion_before_door_open:
+    initial: false
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  name: San Isidro home
+  unit_system: metric
+  customize: !include customize.yaml
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+google_assistant:
+  # This is one-side initiated communication only I think... Google send us commands not the other way, and may query us
+  project_id: hal-9000-155ee
+  api_key: !secret google_assistant_api_key
+  #service_account: !include SERVICE_ACCOUNT.JSON
+  #report_state: true <--- nope, would probably need the service_account data
+  expose_by_default: true
+  #exposed_domains:
+  #  - switch
+  #  - sensor
+  #  - light
+  #  - text_sensor
+  # TODO: note down how we set this up, the google config dashboard url and how it's different from googlehome and the webhooks api
+  # So to connect to this from mobile we just start google assistant and go to home, and talk?
+  # while to connect to the webhook we tell GA to talk to San Isidro Home and then we only have the sentences we defined there?
+  #    see the Lights on webhook and Lights off webhook in automations.yaml
+
+alexa:
+  smart_home:
+    # out Lambda at https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/HomeAssistant
+    # calls this, and it is in turn used by the skill at
+    # https://developer.amazon.com/alexa/console/ask/build/prebuilts/config/amzn1.ask.skill.f174a171-74b9-4868-9efb-b7aad6ecfea2/development/en_US/smartHome
+    # and that in turn is configured as a skill of the SampleApp (./SampleApp/src/SampleApp AlexaClientSDKConfig.json ../alexa-rpi/models/ INFO
+    # from ~/avs-home-frontend) which itself is configured as a Product at https://developer.amazon.com/alexa/console/avs/products/home_avs_frontend
+
+    # For Proactive Events (not same client ID as used by aws)
+    # Disabled now because this send ALL possible changes to AWS all the time and even periodic updates at a high rate,
+    # generate a lot of traffic and an extra privacy concern for me
+    #endpoint: https://api.amazonalexa.com/v3/events
+    #client_id: !amazonalexa_client_id
+    #client_secret: !amazonalexa_client_secret
+
+    entity_config:
+      binary_sensor.doorbell:
+        name: "Door"
+        description: "Doorbell binary sensor"
+        display_categories: DOORBELL
+
+shell_command:
+  start_alexa: 'cd /root/avs-home-frontend/build ; ./SampleApp/src/SampleApp AlexaClientSDKConfig.json ../alexa-rpi/models/ INFO'
+  stop_alexa: 'killall SampleApp'
+  ### google too
+
+#binary_sensor:
+switch:
+  - platform: template
+    #sensors:
+    switches:
+      living_room_socket_1_ro:
+        friendly_name: Living room socket 1 (ro)
+        #device_class: power
+        value_template: "{{ is_state('switch.living_room_socket_1', 'on') }}"
+        icon_template: "mdi:flash"
+        # TODO: availability_template: {{ is_available('switch.living_room_socket_1') }}
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.living_room_socket_1
+        turn_off:
+          delay:
+            milliseconds: 1
+  - platform: template
+    switches:
+      kitchen_area_power_ro:
+        friendly_name: Kitchen area power (ro)
+        #device_class: power
+        value_template: "{{ is_state('switch.kitchen_area_power', 'on') }}"
+        icon_template: "mdi:flash"
+        # TODO: availability_template: {{ is_available('switch.kitchen_area_power') }}
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.kitchen_area_power
+        turn_off:
+          delay:
+            milliseconds: 1
+  - platform: template
+    switches:
+      main_area_power_ro:
+        friendly_name: Main area power (ro)
+        #device_class: power
+        value_template: "{{ is_state('switch.main_area_power', 'on') }}"
+        icon_template: "mdi:flash"
+        # TODO: availability_template: {{ is_available('switch.main_area_power') }}
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.main_area_power
+        turn_off:
+          delay:
+            milliseconds: 1
+
+sensor:
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 86400
+    command: "ssl-cert-check -b -c /etc/letsencrypt/live/ha.zabor.org/cert.pem | awk '{ print $NF }'"
+
+light:
+  - name: Living room lights
+    platform: group
+    entities:
+      - light.living_room_lights_1
+      - light.living_room_lights_2
+      - light.living_room_lights_3
+      - light.living_room_lights_4
+      - light.living_room_lights_5
+  - name: Bedroom lights
+    platform: group
+    entities:
+      - light.bedroom_1_light
+      - light.bedroom_2_light
+  - name: Bathroom lights
+    platform: group
+    entities:
+      - light.bathroom_lights_1
+      - light.bathroom_lights_2
+      - light.bathroom_mirror_lights
+  - name: All lights
+    platform: group
+    entities:
+      - light.living_room_lights_1
+      - light.living_room_lights_2
+      - light.living_room_lights_3
+      - light.living_room_lights_4
+      - light.living_room_lights_5
+      - light.bedroom_1_light
+      - light.bedroom_2_light
+      - light.hall_light
+      - light.bathroom_lights_1
+      - light.bathroom_lights_2
+      - light.bathroom_mirror_lights

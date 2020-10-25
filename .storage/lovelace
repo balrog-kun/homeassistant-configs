@@ -1,0 +1,1216 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "San Isidro home",
+            "views": [
+                {
+                    "badges": [
+                        {
+                            "entity": "person.andrew"
+                        },
+                        {
+                            "entity": "person.yanara"
+                        },
+                        {
+                            "entity": "person.salva"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entity": "script.entry_seq",
+                                    "hold_action": {
+                                        "action": "more-info"
+                                    },
+                                    "icon": "mdi:door",
+                                    "icon_height": "60px",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.entry_seq"
+                                    },
+                                    "theme": "default",
+                                    "type": "entity-button"
+                                },
+                                {
+                                    "entity": "script.entry_seq",
+                                    "hold_action": {
+                                        "action": "more-info"
+                                    },
+                                    "icon": "mdi:amazon-alexa",
+                                    "icon_height": "60px",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "shell_command.start_alexa"
+                                    },
+                                    "theme": "default",
+                                    "type": "entity-button"
+                                },
+                                {
+                                    "entity": "script.entry_seq",
+                                    "hold_action": {
+                                        "action": "more-info"
+                                    },
+                                    "icon": "mdi:stop",
+                                    "icon_height": "60px",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "shell_command.stop_alexa"
+                                    },
+                                    "theme": "default",
+                                    "type": "entity-button"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entity": "weather.san_isidro_home",
+                                    "type": "weather-forecast"
+                                },
+                                {
+                                    "config": {
+                                        "image": "/local/floorplan/building.svg",
+                                        "rules": [
+                                            {
+                                                "entities": [
+                                                    "person.andrew",
+                                                    "person.yanara",
+                                                    "person.salva"
+                                                ]
+                                            }
+                                        ],
+                                        "stylesheet": "/local/floorplan/floorplan.css"
+                                    },
+                                    "type": "custom:floorplan-card"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "config": {
+                                "image": "/local/floorplan/main.svg",
+                                "rules": [
+                                    {
+                                        "entities": [
+                                            "light.living_room_lights_1",
+                                            "light.living_room_lights_2",
+                                            "light.living_room_lights_3",
+                                            "light.living_room_lights_4",
+                                            "light.bedroom_1_light",
+                                            "light.bedroom_2_light",
+                                            "light.hall_light",
+                                            "light.bathroom_lights_1",
+                                            "light.bathroom_lights_2",
+                                            "light.bathroom_mirror_lights"
+                                        ],
+                                        "states": [
+                                            {
+                                                "class": "light-off",
+                                                "state": "off"
+                                            },
+                                            {
+                                                "class": "light-on",
+                                                "state": "on"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entities": [
+                                            "light.all_lights",
+                                            "light.living_room_lights",
+                                            "light.bathroom_lights"
+                                        ],
+                                        "states": [
+                                            {
+                                                "class": "light-group-off",
+                                                "state": "off"
+                                            },
+                                            {
+                                                "class": "light-group-on",
+                                                "state": "on"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entities": [
+                                            "switch.living_room_socket_1_ro",
+                                            "switch.living_room_socket_2",
+                                            "switch.bedroom_1_sockets",
+                                            "switch.bedroom_2_power",
+                                            "switch.bathroom_socket_power",
+                                            "switch.kitchen_area_power_ro"
+                                        ],
+                                        "states": [
+                                            {
+                                                "class": "socket-off",
+                                                "state": "off"
+                                            },
+                                            {
+                                                "class": "socket-on",
+                                                "state": "on"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entities": [
+                                            "sensor.living_room_relative_humidity",
+                                            "sensor.living_room_ambient_temperature",
+                                            "sensor.living_room_qnh"
+                                        ],
+                                        "text_template": "${entity.state ? \"\" + parseInt(entity.state) + entity.attributes.unit_of_measurement : \"unk\"}"
+                                    },
+                                    {
+                                        "entities": [
+                                            "binary_sensor.living_room_motion",
+                                            "binary_sensor.hall_motion"
+                                        ],
+                                        "states": [
+                                            {
+                                                "class": "motion-detected",
+                                                "state": "on"
+                                            },
+                                            {
+                                                "class": "motion-clear",
+                                                "state": "off"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "stylesheet": "/local/floorplan/floorplan.css"
+                            },
+                            "title": "Floorplan",
+                            "type": "custom:floorplan-card"
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "panel": false,
+                    "path": "overview",
+                    "title": "Overview"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entity": "light.living_room_lights_1",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_2",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_3",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_4",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_5",
+                                    "type": "light"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        },
+                        {
+                            "entity": "light.bedroom_1_light",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "light.bedroom_2_light",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "light.hall_light",
+                            "type": "light"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entity": "light.bathroom_lights_1",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_2",
+                                    "type": "light"
+                                },
+                                {
+                                    "entity": "light.bathroom_mirror_lights",
+                                    "type": "light"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        }
+                    ],
+                    "path": "lights",
+                    "title": "Lights"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.living_room_lights_1"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_2"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_3"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_4"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_5"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_motion"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_1_ro"
+                                },
+                                {
+                                    "entity": "sensor.living_room_socket_1_current"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_2"
+                                },
+                                {
+                                    "entity": "sensor.living_room_socket_2_current"
+                                },
+                                {
+                                    "entity": "switch.living_room_12v"
+                                },
+                                {
+                                    "entity": "sensor.living_room_ambient_temperature"
+                                },
+                                {
+                                    "entity": "sensor.living_room_relative_humidity"
+                                },
+                                {
+                                    "entity": "sensor.living_room_co_ethanol_h2_nh3_ch4"
+                                },
+                                {
+                                    "entity": "sensor.living_room_brightness"
+                                },
+                                {
+                                    "entity": "sensor.living_room_qfe"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_a"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_b"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_c"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_d"
+                                }
+                            ],
+                            "title": "Living room",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.bedroom_1_light"
+                                },
+                                {
+                                    "entity": "switch.bedroom_1_sockets"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_1_sockets_current"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_1_switch_a"
+                                }
+                            ],
+                            "title": "Bedroom 1",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.bedroom_2_light"
+                                },
+                                {
+                                    "entity": "switch.bedroom_2_power"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_current"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_2_switch"
+                                }
+                            ],
+                            "title": "Bedroom 2",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.bathroom_lights_1"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_2"
+                                },
+                                {
+                                    "entity": "light.bathroom_mirror_lights"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_door"
+                                },
+                                {
+                                    "entity": "switch.bathroom_extractor"
+                                },
+                                {
+                                    "entity": "switch.bathroom_socket_power"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_1"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_2"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_mirrorside_switch"
+                                }
+                            ],
+                            "title": "Bathroom",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.hall_light"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_kitchen_motion"
+                                },
+                                {
+                                    "entity": "sensor.hall_brightness"
+                                },
+                                {
+                                    "entity": "switch.main_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.kitchen_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.doorbell"
+                                },
+                                {
+                                    "entity": "switch.doorbell_silenced"
+                                },
+                                {
+                                    "entity": "binary_sensor.door"
+                                },
+                                {
+                                    "entity": "cover.door_latch"
+                                },
+                                {
+                                    "entity": "switch.door_unlock_signal"
+                                },
+                                {
+                                    "entity": "switch.intercom_silenced"
+                                },
+                                {
+                                    "entity": "switch.intercom_disconnected"
+                                },
+                                {
+                                    "entity": "binary_sensor.call_active"
+                                },
+                                {
+                                    "entity": "switch.hall_socket"
+                                },
+                                {
+                                    "entity": "sensor.key_lock_turns"
+                                },
+                                {
+                                    "entity": "sensor.door_angle"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_temperature"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_qfe"
+                                },
+                                {
+                                    "entity": "binary_sensor.doorbell_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.phone_up"
+                                }
+                            ],
+                            "title": "Hall",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [],
+                            "title": "Kitchen",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [],
+                            "title": "Terrace",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "by-room",
+                    "title": "By area"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.bedroom_1_light"
+                                },
+                                {
+                                    "entity": "light.bedroom_2_light"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_1"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_2"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_3"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_4"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_5"
+                                },
+                                {
+                                    "entity": "light.hall_light"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_1"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_2"
+                                },
+                                {
+                                    "entity": "light.bathroom_mirror_lights"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Lights",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.main_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.kitchen_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_1_ro"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_2"
+                                },
+                                {
+                                    "entity": "switch.bedroom_1_sockets"
+                                },
+                                {
+                                    "entity": "switch.bedroom_2_power"
+                                },
+                                {
+                                    "entity": "switch.bathroom_socket_power"
+                                },
+                                {
+                                    "entity": "switch.hall_socket"
+                                },
+                                {
+                                    "entity": "switch.living_room_12v"
+                                },
+                                {
+                                    "entity": "switch.bathroom_extractor"
+                                },
+                                {
+                                    "entity": "switch.doorbell"
+                                },
+                                {
+                                    "entity": "switch.doorbell_silenced"
+                                },
+                                {
+                                    "entity": "switch.intercom_silenced"
+                                },
+                                {
+                                    "entity": "switch.intercom_disconnected"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Relays",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.bedroom_1_switch_a"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_2_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_a"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_b"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_c"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_d"
+                                },
+                                {
+                                    "entity": "binary_sensor.doorbell_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_1"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_2"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_mirrorside_switch"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Switches",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.living_room_socket_1_current"
+                                },
+                                {
+                                    "entity": "sensor.living_room_socket_2_current"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_1_sockets_current"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_current"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Current meter",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.bathroom_door"
+                                },
+                                {
+                                    "entity": "binary_sensor.door"
+                                },
+                                {
+                                    "entity": "sensor.door_angle"
+                                },
+                                {
+                                    "entity": "sensor.key_lock_turns"
+                                },
+                                {
+                                    "entity": "cover.door_latch"
+                                },
+                                {
+                                    "entity": "switch.door_unlock_signal"
+                                },
+                                {
+                                    "entity": "binary_sensor.call_active"
+                                },
+                                {
+                                    "entity": "binary_sensor.phone_up"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Doors",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.living_room_ambient_temperature"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_temperature"
+                                },
+                                {
+                                    "entity": "sensor.living_room_qnh"
+                                },
+                                {
+                                    "entity": "sensor.living_room_qfe"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_qfe"
+                                },
+                                {
+                                    "entity": "sensor.living_room_relative_humidity"
+                                },
+                                {
+                                    "entity": "sensor.living_room_brightness"
+                                },
+                                {
+                                    "entity": "sensor.hall_brightness"
+                                },
+                                {
+                                    "entity": "sensor.living_room_co_ethanol_h2_nh3_ch4"
+                                },
+                                {
+                                    "entity": "sensor.living_room_ambient_eco2"
+                                },
+                                {
+                                    "entity": "sensor.living_room_total_volatile_organic_compound"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Environment",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.living_room_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.door_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.door_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_version"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_version"
+                                },
+                                {
+                                    "entity": "sensor.door_node_version"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_version"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_version"
+                                },
+                                {
+                                    "entity": "sensor.ads1115_channel_a0_gnd"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_magnetic_magnitude"
+                                },
+                                {
+                                    "entity": "sensor.living_room_alarm_reason"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Node health",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.living_room_motion"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_kitchen_motion"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Presence",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "device_tracker.muppet_home"
+                                },
+                                {
+                                    "entity": "device_tracker.borg4_home"
+                                },
+                                {
+                                    "entity": "device_tracker.0c_7a_15_95_b9_d8"
+                                },
+                                {
+                                    "entity": "device_tracker.00_ef_ba_13_d5_7f"
+                                },
+                                {
+                                    "entity": "device_tracker.asus_home"
+                                },
+                                {
+                                    "entity": "device_tracker.huawei_y7_2019_73cbfbdb69_home"
+                                },
+                                {
+                                    "entity": "device_tracker.android_ab252d0b87eddbd2_home"
+                                },
+                                {
+                                    "entity": "device_tracker.sandroid_home"
+                                },
+                                {
+                                    "entity": "device_tracker.salvaciscoap1_home"
+                                },
+                                {
+                                    "entity": "device_tracker.mirroring_312228_home"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Wi-Fi client",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "by-type",
+                    "title": "By type"
+                },
+                {
+                    "badges": [
+                        {
+                            "entity": "binary_sensor.updater"
+                        },
+                        {
+                            "entity": "person.andrew"
+                        },
+                        {
+                            "entity": "person.yanara"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.bedroom_2_light"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_2_switch"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_version"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Bedroom 2",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.living_room_motion"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_1"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_2"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_3"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_4"
+                                },
+                                {
+                                    "entity": "light.living_room_lights_5"
+                                },
+                                {
+                                    "entity": "light.bedroom_1_light"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_1_ro"
+                                },
+                                {
+                                    "entity": "sensor.living_room_socket_1_current"
+                                },
+                                {
+                                    "entity": "switch.living_room_socket_2"
+                                },
+                                {
+                                    "entity": "sensor.living_room_socket_2_current"
+                                },
+                                {
+                                    "entity": "switch.bedroom_1_sockets"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_1_sockets_current"
+                                },
+                                {
+                                    "entity": "switch.bedroom_2_power"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_current"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_motion"
+                                },
+                                {
+                                    "entity": "sensor.living_room_ambient_temperature"
+                                },
+                                {
+                                    "entity": "sensor.living_room_qnh"
+                                },
+                                {
+                                    "entity": "sensor.living_room_qfe"
+                                },
+                                {
+                                    "entity": "sensor.living_room_relative_humidity"
+                                },
+                                {
+                                    "entity": "sensor.living_room_co_ethanol_h2_nh3_ch4"
+                                },
+                                {
+                                    "entity": "sensor.living_room_ambient_eco2"
+                                },
+                                {
+                                    "entity": "sensor.living_room_total_volatile_organic_compound"
+                                },
+                                {
+                                    "entity": "sensor.living_room_brightness"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.ads1115_channel_a0_gnd"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_magnetic_magnitude"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_version"
+                                },
+                                {
+                                    "entity": "sensor.living_room_alarm_reason"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "switch.living_room_12v"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_a"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_b"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_c"
+                                },
+                                {
+                                    "entity": "binary_sensor.living_room_switch_d"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_1_switch_a"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Living room",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.door"
+                                },
+                                {
+                                    "entity": "cover.door_latch"
+                                },
+                                {
+                                    "entity": "sensor.key_lock_turns"
+                                },
+                                {
+                                    "entity": "sensor.door_angle"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_temperature"
+                                },
+                                {
+                                    "entity": "sensor.door_lock_qfe"
+                                },
+                                {
+                                    "entity": "sensor.door_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.door_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.door_node_version"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Door",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.hall_light"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_1"
+                                },
+                                {
+                                    "entity": "light.bathroom_lights_2"
+                                },
+                                {
+                                    "entity": "light.bathroom_mirror_lights"
+                                },
+                                {
+                                    "entity": "switch.bathroom_extractor"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_kitchen_motion"
+                                },
+                                {
+                                    "entity": "sensor.hall_brightness"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_door"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "switch.kitchen_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.main_area_power_ro"
+                                },
+                                {
+                                    "entity": "switch.bathroom_socket_power"
+                                },
+                                {
+                                    "entity": "switch.doorbell"
+                                },
+                                {
+                                    "entity": "switch.doorbell_silenced"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_version"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "entity": "binary_sensor.hall_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_1"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_entrance_switch_2"
+                                },
+                                {
+                                    "entity": "binary_sensor.bathroom_mirrorside_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.doorbell_switch"
+                                }
+                            ],
+                            "title": "Hall",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.door_unlock_signal"
+                                },
+                                {
+                                    "entity": "binary_sensor.call_active"
+                                },
+                                {
+                                    "entity": "binary_sensor.phone_up"
+                                },
+                                {
+                                    "entity": "switch.intercom_silenced"
+                                },
+                                {
+                                    "entity": "switch.intercom_disconnected"
+                                },
+                                {
+                                    "entity": "switch.hall_socket"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_uptime"
+                                },
+                                {
+                                    "entity": "sensor.intercom_node_version"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Intercom",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "by_node",
+                    "title": "By Node"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "media_player.mirroring_312228",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.beamer_ezcast",
+                            "type": "media-control"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.door_lock_temperature"
+                                },
+                                {
+                                    "entity": "sensor.living_room_ambient_temperature"
+                                }
+                            ],
+                            "hours_to_show": 4,
+                            "refresh_interval": 0,
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.door_angle"
+                                }
+                            ],
+                            "hours_to_show": 1,
+                            "refresh_interval": 0,
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.door_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.living_room_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.hall_node_signal"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_2_node_signal"
+                                }
+                            ],
+                            "hours_to_show": 4,
+                            "refresh_interval": 0,
+                            "type": "history-graph"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "label": "Section hello",
+                                    "type": "section"
+                                },
+                                {
+                                    "type": "cast",
+                                    "view": "overview"
+                                },
+                                {
+                                    "type": "divider"
+                                }
+                            ],
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "testing",
+                    "title": "testing"
+                }
+            ]
+        }
+    }
+}

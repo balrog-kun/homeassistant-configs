@@ -1,0 +1,234 @@
+- id: alarm_triggered
+  alias: Alarm triggered
+  description: ''
+  trigger:
+  - entity_id: sensor.living_room_alarm_reason
+    platform: state
+  condition:
+  - condition: template
+    value_template: '{{ trigger.from_state.state != "unavailable" and trigger.to_state.state
+      != "unavailable" and trigger.to_state.state != "" }}'
+  action:
+  - service: automation.turn_off
+    entity_id: automation.alarm_triggered
+  - service: esphome.livingroom_alarm
+  - service: esphome.bedroom2light_alarm
+  - service: esphome.hall_alarm
+  - service: esphome.intercom_alarm
+  - service: persistent_notification.create
+    data_template:
+      title: 'Apartment alarm: {{ trigger.to_state.state }}'
+      message: 'Home Assistant alarm triggered at San Isidro apartment by {{ trigger.entity_id }}
+
+        Reason: {{ trigger.to_state.state }}
+
+        Previous reason was: {{ trigger.from_state.state }}'
+      notification_id: alarm
+  - service: notify.alarm_email
+    data_template:
+      title: 'Apartment alarm: {{ trigger.to_state.state }}'
+      message: 'Home Assistant alarm triggered at San Isidro apartment by {{ trigger.entity_id }}
+
+        Reason: {{ trigger.to_state.state }}
+
+        Previous reason was: {{ trigger.from_state.state }}'
+  - delay:
+      minutes: 3
+  - service: automation.turn_on
+    entity_id: automation.alarm_triggered
+- alias: SSL expiry notification
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_cert_expiry
+    below: 15
+  action:
+  - service: notify.alarm_email
+    data:
+      title: 'Apartment alarm: SSL cert update'
+      message: Warning - SSL certificate expires in 21 days and has not been automatically
+        renewed
+  - service: persistent_notification.create
+    data:
+      title: 'Apartment alarm: SSL cert update'
+      message: Warning - SSL certificate expires in 21 days and has not been automatically
+        renewed
+      notification_id: ssl_alarm
+  id: 5e477caf95224dda8f8f8b4c4b5fee80
+- alias: Lights on webhook
+  trigger:
+    platform: webhook
+    webhook_id: lights-on
+  action:
+  - service_template: >
+      {% if trigger.json.queryResult.action == "off" %}
+        light.turn_off
+      {% else %}
+        {% if trigger.json.queryResult.action == "toggle" %}
+          light.toggle
+        {% else %}
+          light.turn_on
+        {% endif %}
+      {% endif %}
+    data_template:
+      entity_id: "light.{{ trigger.json.queryResult.parameters.light | replace(' ', '_') }}"
+  #- service: persistent_notification.create
+  #  data_template:
+  #    title: 'Turn on webhook'
+  #    message: 'trigger.json: {{ trigger.json }}
+  #
+  #      entity_id: light.{{ trigger.json.queryResult.parameters.light | replace(" ", "_") }}
+  #
+  #      trigger.data: {{ trigger.data }}
+  #
+  #      trigger.query: {{ trigger.query }}'
+  #    notification_id: webhook_info
+  id: bf73e0d90b1340b9b70dee5114310b64
+  condition: []
+- alias: Lights off webhook
+  trigger:
+    platform: webhook
+    webhook_id: lights-off
+  action:
+  - service: lights.turn_off
+    data_template:
+      entity_id: "light.{{ trigger.json.queryResult.parameters.light | replace(' ', '_') }}"
+  id: bf73e0d90b1340b9b70dee5114310b63
+  condition: []
+- alias: Lights error
+  trigger:
+    platform: event
+    event_type: esphome.light_error_beep
+  action:
+  - service: esphome.intercom_error_beep
+  id: light_error_beep
+  condition: []
+- alias: Latch error
+  trigger:
+    platform: event
+    event_type: esphome.latch_error_beep
+  action:
+  - service: esphome.intercom_error_beep
+  id: latch_error_beep
+  condition: []
+- trigger:
+    - entity_id: binary_sensor.hall_kitchen_motion
+      to: 'off'
+      for: '00:01:00'
+      platform: state
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.no_recent_motion
+  alias: var_update_1
+  id: var_update_1
+- trigger:
+    - entity_id: binary_sensor.hall_kitchen_motion
+      to: 'on'
+      for: '00:00:02'
+      platform: state
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.no_recent_motion
+  alias: var_update_2
+  id: var_update_2
+- trigger:
+    - entity_id: binary_sensor.door
+      # open
+      to: 'on'
+      platform: state
+  action:
+    - service_template: input_boolean.turn_{{ 'on' if is_state('input_boolean.no_recent_motion', 'off') else 'off' }}
+      data:
+        entity_id: input_boolean.motion_before_door_open
+  alias: var_update_3
+  id: var_update_3
+- alias: Hall light on arrival
+  trigger:
+    - entity_id: binary_sensor.door
+      # open
+      to: 'on'
+      platform: state
+    - entity_id: binary_sensor.hall_kitchen_motion
+      to: 'on'
+      platform: state
+  condition:
+    - entity_id: binary_sensor.door
+      # open
+      state: 'on'
+      condition: state
+    - entity_id: binary_sensor.hall_kitchen_motion
+      state: 'on'
+      condition: state
+    - entity_id: input_boolean.no_recent_motion
+      # no difference whether we use no_recent_motion == on or motion_before_door_open == off here
+      state: 'on'
+      condition: state
+    - entity_id: light.hall_light
+      state: 'off'
+      # What if it was on but dimmed?  Well we try to not publish our transitions to on in the dim mode on motion detect so
+      # as far as HA is concerned they should be off... but we could use an "or" here: (state == off or brightness < threshold)
+      condition: state
+    - entity_id: sensor.hall_brightness
+      below: 9
+      condition: numeric_state
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.hall_light
+        transition: 5
+        brightness: 255
+- alias: Hall light off after departure
+  trigger:
+    - entity_id: binary_sensor.door
+      # closed
+      to: 'off'
+      for: '00:00:20'
+      platform: state
+  condition:
+    - entity_id: binary_sensor.hall_kitchen_motion
+      state: 'off'
+      for: '00:00:15' # The PIR sensor has a delayed_off: 5s filter in esphome
+      condition: state
+    - entity_id: input_boolean.motion_before_door_open
+      state: 'on'
+      condition: state
+    - entity_id: light.hall_light
+      state: 'on'
+      condition: state
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.hall_light
+        transition: 5
+- alias: Lights off on everyone away
+  trigger:
+    entity_id: person.andrew, person.yanara
+    to: 'not_home'
+    for: '00:01:00'
+    platform: state
+  condition:
+    # FIXME: why can't we put multiple entity IDs in one condition's entity_id attr? should work according to https://www.home-assistant.io/docs/scripts/conditions/
+    - entity_id: person.andrew
+      state: 'not_home'
+      for: '00:01:00'
+      condition: state
+    - entity_id: person.andrew
+      state: 'not_yanara'
+      for: '00:01:00'
+      condition: state
+    - entity_id: binary_sensor.living_room_motion
+      state: 'off'
+      for: '00:01:00'
+      condition: state
+    - entity_id: binary_sensor.hall_kitchen_motion
+      state: 'off'
+      for: '00:01:00'
+      condition: state
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: all
+        transition: 3
+    - service: switch.turn_off
+      entity_id: switch.bathroom_extractor
