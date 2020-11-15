@@ -6,7 +6,7 @@
             "uses_password": false,
             "name": "intercom",
             "mac_address": "24:62:AB:CA:DC:18",
-            "compilation_time": "Oct 25 2020, 00:55:21",
+            "compilation_time": "Nov 14 2020, 20:54:55",
             "model": "TTGO T7 V1.3 Mini32",
             "has_deep_sleep": false,
             "esphome_version": "1.15.0-dev"
@@ -20,6 +20,16 @@
             {
                 "name": "error_beep",
                 "key": 2534052532,
+                "args": []
+            },
+            {
+                "name": "door_reminder_start",
+                "key": 3080642011,
+                "args": []
+            },
+            {
+                "name": "door_reminder_stop",
+                "key": 2813764793,
                 "args": []
             }
         ],
@@ -57,24 +67,6 @@
                 "assumed_state": false
             }
         ],
-        "binary_sensor": [
-            {
-                "object_id": "call_active",
-                "key": 1595528382,
-                "name": "Call active",
-                "unique_id": "intercombinary_sensorcall_active",
-                "device_class": "vibration",
-                "is_status_binary_sensor": false
-            },
-            {
-                "object_id": "phone_unhooked",
-                "key": 442685401,
-                "name": "Phone unhooked",
-                "unique_id": "intercombinary_sensorphone_unhooked",
-                "device_class": "presence",
-                "is_status_binary_sensor": false
-            }
-        ],
         "sensor": [
             {
                 "object_id": "intercom_node_signal",
@@ -104,6 +96,32 @@
                 "name": "Intercom node version",
                 "unique_id": "2462abcadc18-version",
                 "icon": "mdi:new-box"
+            }
+        ],
+        "binary_sensor": [
+            {
+                "object_id": "call_active",
+                "key": 1595528382,
+                "name": "Call active",
+                "unique_id": "intercombinary_sensorcall_active",
+                "device_class": "vibration",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "phone_unhooked",
+                "key": 442685401,
+                "name": "Phone unhooked",
+                "unique_id": "intercombinary_sensorphone_unhooked",
+                "device_class": "",
+                "is_status_binary_sensor": false
+            },
+            {
+                "object_id": "ringing",
+                "key": 3128915365,
+                "name": "Ringing",
+                "unique_id": "intercombinary_sensorringing",
+                "device_class": "sound",
+                "is_status_binary_sensor": false
             }
         ]
     }

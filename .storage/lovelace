@@ -38,7 +38,7 @@
                                     "hold_action": {
                                         "action": "more-info"
                                     },
-                                    "icon": "mdi:door",
+                                    "icon": "mdi:door-closed-lock",
                                     "icon_height": "60px",
                                     "show_icon": true,
                                     "show_name": true,
@@ -47,12 +47,12 @@
                                         "service": "script.entry_seq"
                                     },
                                     "theme": "default",
-                                    "type": "entity-button"
+                                    "type": "entity-button",
+                                    "show_state": true
                                 },
                                 {
-                                    "entity": "script.entry_seq",
                                     "hold_action": {
-                                        "action": "more-info"
+                                        "action": "none"
                                     },
                                     "icon": "mdi:amazon-alexa",
                                     "icon_height": "60px",
@@ -63,14 +63,15 @@
                                         "service": "shell_command.start_alexa"
                                     },
                                     "theme": "default",
-                                    "type": "entity-button"
+                                    "type": "entity-button",
+                                    "show_state": false,
+                                    "name": "Start Alexa"
                                 },
                                 {
-                                    "entity": "script.entry_seq",
                                     "hold_action": {
-                                        "action": "more-info"
+                                        "action": "none"
                                     },
-                                    "icon": "mdi:stop",
+                                    "icon": "mdi:amazon-alexa",
                                     "icon_height": "60px",
                                     "show_icon": true,
                                     "show_name": true,
@@ -79,7 +80,8 @@
                                         "service": "shell_command.stop_alexa"
                                     },
                                     "theme": "default",
-                                    "type": "entity-button"
+                                    "type": "entity-button",
+                                    "name": "Stop Alexa"
                                 }
                             ],
                             "type": "horizontal-stack"
@@ -473,6 +475,9 @@
                                 },
                                 {
                                     "entity": "binary_sensor.phone_up"
+                                },
+                                {
+                                    "entity": "binary_sensor.ringing"
                                 }
                             ],
                             "title": "Hall",
@@ -618,6 +623,9 @@
                                 },
                                 {
                                     "entity": "binary_sensor.bathroom_mirrorside_switch"
+                                },
+                                {
+                                    "entity": "binary_sensor.ringing"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -1122,6 +1130,9 @@
                                 },
                                 {
                                     "entity": "switch.intercom_silenced"
+                                },
+                                {
+                                    "entity": "binary_sensor.ringing"
                                 },
                                 {
                                     "entity": "switch.intercom_disconnected"
