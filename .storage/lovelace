@@ -3,6 +3,16 @@
     "key": "lovelace",
     "data": {
         "config": {
+            "resources": [
+                {
+                    "type": "module",
+                    "url": "/local/floorplan/floorplan-card.js?v=1.1.14"
+                },
+                {
+                    "type": "module",
+                    "url": "/local/custom_ui/swipe-card/swipe-card.js?v=3.0.0"
+                }
+            ],
             "title": "San Isidro home",
             "views": [
                 {

@@ -1,111 +1,111 @@
-      name: San Isidro home floorplan
-      image: /local/floorplan/main.svg
-      stylesheet: /local/floorplan/floorplan.css
+name: San Isidro home floorplan
+image: /local/floorplan/main.svg
+stylesheet: /local/floorplan/floorplan.css
 
-      # These options are optional
-      # warnings:                  # enable warnings (to find out why things might ot be working correctly)
-      # pan_zoom:                  # enable experimental panning / zooming
-      # hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
-      # date_format: DD-MMM-YYYY   # Date format to use in hover-over text
+# These options are optional
+# warnings:                  # enable warnings (to find out why things might ot be working correctly)
+# pan_zoom:                  # enable experimental panning / zooming
+# hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
+# date_format: DD-MMM-YYYY   # Date format to use in hover-over text
 
-      pan_zoom: on
-      #last_motion_entity: sensor.template_last_motion
-      #last_motion_class: last-motion
+#pan_zoom: on
+#last_motion_entity: sensor.template_last_motion
+#last_motion_class: last-motion
 
-      groups:
+groups:
 
-        - name: Sensors
-          entities:
-             -  sensor.dark_sky_temperature
-          #text_template: '${entity.state ? entity.state : "unknown"}'
-          # An example of rounding up a number, i.e. a temperature of 90.1 becomes 91
-          text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'  
-          class_template: '
-            var temp = parseFloat(entity.state.replace("°", ""));
-            if (temp < 10)
-              return "temp-low";
-            else if (temp < 30)
-              return "temp-medium";
-            else
-              return "temp-high";
-            '
+  - name: Sensors
+    entities:
+       -  sensor.dark_sky_temperature
+    #text_template: '${entity.state ? entity.state : "unknown"}'
+    # An example of rounding up a number, i.e. a temperature of 90.1 becomes 91
+    text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'  
+    class_template: '
+      var temp = parseFloat(entity.state.replace("°", ""));
+      if (temp < 10)
+        return "temp-low";
+      else if (temp < 30)
+        return "temp-medium";
+      else
+        return "temp-high";
+      '
 
-        - name: Lights
-          entities:
-            - light.living_room_lights_1
-            - light.living_room_lights_2
-            - light.living_room_lights_3
-            - light.living_room_lights_4
-            - light.living_room_lights_5
-            - light.bedroom_1_light
-            - light.bedroom_2_light
-            - light.hall_light
-            - light.bathroom_lights_1
-            - light.bathroom_lights_2
-            - light.bathroom_mirror_lights
-          states:
-            - state: 'on'
-              class: 'light-on'
-            - state: 'off'
-              class: 'light-off'
-          action:
-            domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
-            service: toggle
+  - name: Lights
+    entities:
+      - light.living_room_lights_1
+      - light.living_room_lights_2
+      - light.living_room_lights_3
+      - light.living_room_lights_4
+      - light.living_room_lights_5
+      - light.bedroom_1_light
+      - light.bedroom_2_light
+      - light.hall_light
+      - light.bathroom_lights_1
+      - light.bathroom_lights_2
+      - light.bathroom_mirror_lights
+    states:
+      - state: 'on'
+        class: 'light-on'
+      - state: 'off'
+        class: 'light-off'
+    action:
+      domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+      service: toggle
 
-        - name: Light groups
-          entities:
-            - light.all_lights
-            - light.living_room_lights
-            - light.bathroom_lights
-          states:
-            - state: 'on'
-              class: 'light-group-on'
-            - state: 'off'
-              class: 'light-group-off'
-          action:
-            domain: homeassistant
-            service: toggle
+  - name: Light groups
+    entities:
+      - light.all_lights
+      - light.living_room_lights
+      - light.bathroom_lights
+    states:
+      - state: 'on'
+        class: 'light-group-on'
+      - state: 'off'
+        class: 'light-group-off'
+    action:
+      domain: homeassistant
+      service: toggle
 
-        - name: Switches
-          entities:
-             - switch.living_room_socket_1_ro
-             - switch.living_room_socket_2
-             - switch.bedroom_1_sockets
-             - switch.bedroom_2_power
-             - switch.bathroom_power
-             - switch.kitchen_area_power
-          states:
-            - state: 'on'
-              class: 'socket-on'
-            - state: 'off'
-              class: 'socket-off'
+  - name: Switches
+    entities:
+       - switch.living_room_socket_1_ro
+       - switch.living_room_socket_2
+       - switch.bedroom_1_sockets
+       - switch.bedroom_2_power
+       - switch.bathroom_power
+       - switch.kitchen_area_power
+    states:
+      - state: 'on'
+        class: 'socket-on'
+      - state: 'off'
+        class: 'socket-off'
 
-        #- name: Alarm Panel
-        #  entities:
-        #     - alarm_control_panel.alarm
-        #  states:
-        #    - state: 'armed_away'
-        #      class: 'alarm-armed'
-        #    - state: 'armed_home'
-        #      class: 'alarm-armed'
-        #    - state: 'disarmed'
-        #      class: 'alarm-disarmed'
+  #- name: Alarm Panel
+  #  entities:
+  #     - alarm_control_panel.alarm
+  #  states:
+  #    - state: 'armed_away'
+  #      class: 'alarm-armed'
+  #    - state: 'armed_home'
+  #      class: 'alarm-armed'
+  #    - state: 'disarmed'
+  #      class: 'alarm-disarmed'
 
-        - name: Motion
-          entities:
-            - binary_sensor.living_room_motion
-            - binary_sensor.hall_motion
-          states:
-            - state: 'on'
-              class: 'motion-detected'
-            - state: 'off'
-              class: 'motion-clear'
+  - name: Motion
+    entities:
+      - binary_sensor.living_room_motion
+      - binary_sensor.hall_motion
+    states:
+      - state: 'on'
+        class: 'motion-detected'
+      - state: 'off'
+        class: 'motion-clear'
 
-        - name: Text states
-          entities:
-            - sensor.living_room_relative_humidity
-            - sensor.living_room_ambient_temperature
-            - sensor.living_room_qnh
-          text_template: '${entity.state ? "" + parseInt(entity.state) + entity.attributes.unit_of_measurement : "unk"}'
-          # The above text_template uses jQuery syntax to search and replace any instance of 2 consecutive (or more) spaces in a string of text.
-          # TODO: current sensors, etc.
+  - name: Text states
+    entities:
+      - sensor.living_room_relative_humidity
+      - sensor.living_room_ambient_temperature
+      - sensor.living_room_qnh
+    text_template: '${entity.state ? "" + parseInt(entity.state) + entity.attributes.unit_of_measurement : "unk"}'
+    # The above text_template uses jQuery syntax to search and replace any instance of 2 consecutive (or more) spaces in a string of text.
+    # TODO: current sensors, etc.

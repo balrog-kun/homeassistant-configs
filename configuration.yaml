@@ -88,8 +88,8 @@ homeassistant:
 panel_custom:
   - name: floorplan
     sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
+    sidebar_icon: mdi:floor-plan
+    module_url: /local/custom-floor-panel.js
     config: !include floorplan.yaml
 
 google_assistant:
