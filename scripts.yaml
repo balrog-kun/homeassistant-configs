@@ -26,25 +26,20 @@ entry_seq_internal:
   sequence:
   #
   # Wait for the exterior door call signal, send the unlock signal, wait
-  # to see if we get an interior door call signal and send another unlock
-  # signal and unlatch the home entrance door after 5 seconds.
-  # Unfortunately right now the first call has to time out fully (55s?)
-  # before the call signal goes low so if the new call starts earlier the
-  # line never goes low and we can't detect the new call (TODO)
+  # to see if we get an interior door ring signal and send another unlock
+  # signal and unlatch the home entrance door after 7 seconds.
   #
   - wait_template: "{{ is_state('binary_sensor.call_active', 'on') }}"
     timeout: '00:02:00'
     continue_on_timeout: false
   - service: switch.turn_on
     entity_id: switch.door_unlock_signal
-  - wait_template: "{{ is_state('binary_sensor.call_active', 'off') }}"
-    timeout: '00:02:00'
-    continue_on_timeout: false
-  - wait_template: "{{ is_state('binary_sensor.call_active', 'on') }}"
+  - delay: '00:00:07'
+  - wait_template: "{{ is_state('binary_sensor.ringing', 'on') }}"
     timeout: '00:02:00'
     continue_on_timeout: false
   - service: switch.turn_on
     entity_id: switch.door_unlock_signal
-  - delay: '00:00:05'
+  - delay: '00:00:07'
   - service: cover.open_cover
     entity_id: cover.door_latch
