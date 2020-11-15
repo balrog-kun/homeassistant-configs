@@ -232,3 +232,56 @@
         transition: 3
     - service: switch.turn_off
       entity_id: switch.bathroom_extractor
+- alias: Send email after door open for 10 mins
+  trigger:
+    entity_id: sensor.door_angle
+    above: 0.0
+    for: '00:10:00'
+    platform: numeric_state
+  condition:
+  - entity_id: person.andrew
+    state: 'not_home'
+    condition: state
+  action:
+  - service: notify.alarm_email
+    data:
+      title: 'Apartment alarm: door left open'
+      message: 'The front door has been open at San Isidro apartment for 10 mins now'
+- alias: Send email after bathroom door closed for 45 mins
+  trigger:
+    entity_id: binary_sensor.bathroom_door
+    to: 'off'
+    for: '00:45:00'
+    platform: state
+  action:
+  - service: esphome.intercom_door_reminder_start # Also beep for 30s
+  - service: notify.alarm_email
+    data:
+      title: 'Apartment alarm: bathroom door left closed'
+      message: 'The bathroom door has been closed at San Isidro apartment for 45 mins now'
+- alias: Beep after door ajar for 45s
+  trigger:
+    entity_id: sensor.door_angle
+    above: 0.001
+    below: 8.0
+    for: '00:00:45'
+    platform: numeric_state
+  condition:
+  - "{{ is_state('person.andrew', 'home') or is_state('person.yanara', 'home') }}"
+  action:
+  - service: persistent_notification.create
+    data:
+      title: "Door ajar reminder"
+      message: "The door has been slightly open for over 45s"
+      notification_id: door_ajar_reminder
+  - repeat: # Why doesn't the shorthand notation work?
+      until: "{{ (states('sensor.door_angle') | float < 0.001) or (states('sensor.door_angle') | float > 10.0) }}"
+      sequence:
+      - service: esphome.intercom_door_reminder_start
+      - wait_template: "{{ (states('sensor.door_angle') | float < 0.001) or (states('sensor.door_angle') | float > 10.0) }}"
+        timeout: '00:00:20'
+        continue_on_timeout: true
+  - service: esphome.intercom_door_reminder_stop
+  - service: persistent_notification.dismiss
+    data:
+      notification_id: door_ajar_reminder
