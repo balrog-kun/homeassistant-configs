@@ -6,10 +6,10 @@ entry_seq:
   mode: restart
   sequence:
   #
-  # Call entry_seq_internal.  If the intercom was silenced exit this script and
-  # let entry_seq_internal run.  If it was not silenced, silence it, wait for
-  # entry_seq_internal to finish (whether it times out early or finishes
-  # completely) and unmute the intercom speaker.
+  # Call entry_seq_internal.  If the intercom was silenced exit this script and let
+  # entry_seq_internal run.  If it was not silenced, silence it, wait for entry_seq_internal to
+  # finish (whether it times out early or finishes completely) and unmute the intercom speaker a few
+  # seconds after the last intercom call ends so that the end-of-call sound is also silenced.
   #
   - service: script.turn_on
     entity_id: script.entry_seq_internal
@@ -19,6 +19,10 @@ entry_seq:
   - service: switch.turn_on
     entity_id: switch.intercom_silenced
   - wait_template: "{{ is_state('script.entry_seq_internal', 'off') }}"
+  - wait_template: "{{ is_state('binary_sensor.call_active', 'off') }}"
+    timeout: '00:02:00'
+    continue_on_timeout: true
+  - delay: '00:00:03'
   - service: switch.turn_off
     entity_id: switch.intercom_silenced
 entry_seq_internal:
