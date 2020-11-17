@@ -2,8 +2,13 @@ entry_seq:
   alias: Entry sequence
   description: Open the street door on ring, open the staircase door on ring, unlock front door
   icon: "mdi:door-closed-lock"
-  # If called again while still running (probably in delay step), start over.
-  mode: restart
+  # If called again while still running we actually want to start over but we don't want to kill the
+  # original instance of the running script and forget the saved switch.intercom_silenced state.  So
+  # instead script.entry_seq_internal is restarted but script.entry_seq starts a parallel instance.
+  # The original one is kept to eventually restore the silenced state while the new ones, since the
+  # intercom was already silenced by the first instance, just start script.entry_seq_internal and
+  # exit so we don't run the risk of having unbounded parallel instances.
+  mode: parallel
   sequence:
   #
   # Call entry_seq_internal.  If the intercom was silenced exit this script and let
