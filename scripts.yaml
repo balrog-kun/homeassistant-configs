@@ -52,3 +52,12 @@ entry_seq_internal:
   - delay: '00:00:07'
   - service: cover.open_cover
     entity_id: cover.door_latch
+
+alexa_start:
+  mode: single
+  sequence:
+  - service: shell_command.start_alexa
+alexa_stop:
+  mode: single
+  sequence:
+  - service: shell_command.stop_alexa

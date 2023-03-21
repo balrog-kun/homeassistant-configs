@@ -3,7 +3,7 @@
 default_config:
 
 http:
-  base_url: https://ha.zabor.org/
+  #base_url: https://ha.zabor.org/
   server_host: 127.0.0.1
   server_port: 444
   #ssl_certificate: /etc/letsencrypt/live/ha.zabor.org/fullchain.pem
@@ -16,18 +16,36 @@ http:
 logger:
   default: info
   logs:
-    homeassistant.components.device_tracker: error
-    custom_components.ping_arp.device_tracker: error
+    homeassistant.components.device_tracker: debug
+    custom_components.ping_arp.device_tracker: debug
     # When an automation starts there are 'info' messages of both classes..
     homeassistant.helpers.script: error
     homeassistant.components.automation: error
     # This doesn't work:
     homeassistant.components.automation.var_update_1: error
     #homeassistant.components.alexa: debug
+    #homeassistant.components.websocket_api: error
+    homeassistant.components.media_player: debug
+    homeassistant.components.media_source: debug
+    #homeassistant.components.recorder: error
+    #homeassistant.components.core: error
+    gsp: debug
 
 # Text to speech
 tts:
   - platform: google_translate
+    cache: true
+    service_name: say
+
+media_player:
+  - platform: gstreamer
+    name: speaker_main
+    pipeline: pulsesink stream-properties="props,media.role=announce"
+    #device_class: speaker
+  - platform: gstreamer
+    name: speaker_music
+    pipeline: pulsesink stream-properties="props,media.role=music"
+    #device_class: speaker
 
 notify:
   - name: alarm_email
@@ -42,8 +60,8 @@ notify:
     recipient:
       - balrogg@gmail.com
     sender_name: San Isidro Home-Assistant
-  - name: browser_push
-    platform: html5
+  #- name: browser_push
+  #  platform: html5
 
 # TODO: alarm logic using https://www.home-assistant.io/integrations/manual/ but with internal logic in the nodes too?
 
@@ -84,6 +102,16 @@ homeassistant:
   name: San Isidro home
   unit_system: metric
   customize: !include customize.yaml
+  latitude: 40.3975
+  longitude: -3.7321
+  elevation: 650
+  time_zone: "Europe/Madrid"
+  currency: EUR
+  media_dirs:
+    media: "/var/lib/mpd/music"
+  # Used for passing audio file URLs to media players (local files and text-to-speech temp files)
+  # without it, HA would for some reason pass http://10.0.5.5:444/... which would fail
+  internal_url: "http://127.0.0.1:444"
 
 panel_custom:
   - name: floorplan
@@ -131,7 +159,7 @@ alexa:
         display_categories: DOORBELL
 
 shell_command:
-  start_alexa: 'cd /root/avs-home-frontend/build ; ./SampleApp/src/SampleApp AlexaClientSDKConfig.json ../alexa-rpi/models/ INFO'
+  start_alexa: '/root/alexa-sdk/sample-app-start.sh'
   stop_alexa: 'killall SampleApp'
   ### google too
 
@@ -186,7 +214,22 @@ sensor:
     name: SSL cert expiry
     unit_of_measurement: days
     scan_interval: 86400
-    command: "ssl-cert-check -b -c /etc/letsencrypt/live/ha.zabor.org/cert.pem | awk '{ print $NF }'"
+    command: "echo 30" ###"ssl-cert-check -b -c /etc/letsencrypt/live/ha.zabor.org/cert.pem | awk '{ print $NF }'"
+  - platform: command_line
+    name: Server mainboard temperature
+    # Same as /sys/class/hwmon/hwmon0/temp1_input
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+    scan_interval: 600
+  - platform: command_line
+    name: Server CPU temperature
+    # Same as /sys/class/hwmon/hwmon1/temp1_input
+    # We also have individual core temperatures in /sys/class/hwmon/hwmon1/temp{2,3,4,5}_input but that's too much detail
+    command: "cat /sys/class/thermal/thermal_zone1/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+    scan_interval: 600
 
 light:
   - name: Living room lights

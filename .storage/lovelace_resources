@@ -1,18 +1,34 @@
 {
-    "version": 1,
-    "key": "lovelace_resources",
-    "data": {
-        "items": [
-            {
-                "type": "module",
-                "url": "/local/floorplan/floorplan-card.js?v=1.1.14",
-                "id": "a3323e2fa0de4bffb5cb317ae4d72ab9"
-            },
-            {
-                "type": "module",
-                "url": "/local/custom_ui/swipe-card/swipe-card.js?v=3.0.0",
-                "id": "be5d1cde4a9e4d75a67bfe2f28fab7fa"
-            }
-        ]
-    }
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "type": "module",
+        "url": "/local/floorplan/floorplan-card.js?v=1.1.14",
+        "id": "a3323e2fa0de4bffb5cb317ae4d72ab9"
+      },
+      {
+        "type": "module",
+        "url": "/local/custom_ui/swipe-card/swipe-card.js?v=3.0.0",
+        "id": "be5d1cde4a9e4d75a67bfe2f28fab7fa"
+      },
+      {
+        "url": "/hacsfiles/light-entity-card/light-entity-card.js?hacstag=168744428500",
+        "type": "module",
+        "id": "7a5d2888e2bc4ad28135f5d1ab90c073"
+      },
+      {
+        "url": "/hacsfiles/rgb-light-card/card.js?hacstag=2153271951110",
+        "type": "module",
+        "id": "3dc3c5441fdd48cca22eae40b6825a62"
+      },
+      {
+        "url": "/hacsfiles/hass-shutter-card/hass-shutter-card.js?hacstag=269011342140",
+        "type": "module",
+        "id": "b03151371fd04cad938366a3bdba92f5"
+      }
+    ]
+  }
 }
